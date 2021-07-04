@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    position: "relative",
+    //  position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -211,6 +211,7 @@ const DashboardLayout = ({ children }) => {
       {renderMenu}
       {/* DRAWER */}
       <Drawer
+        elevation={4}
         variant="persistent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),

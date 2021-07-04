@@ -1,13 +1,13 @@
 # Next-Dash
 
-Next-Dash is a free and open source NextJs dashboard built with Material UI.
+Next-Dash is a free and open source NextJs dashboard template built with Material UI.
 
 ## Installation
 
 Use the package manager to install next-dash.
 
 ```bash
-npm install next-dash
+git clone https://github.com/gaiyadev/next-dash.git
 ```
 
 ## Usage
