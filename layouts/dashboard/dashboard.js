@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import Link2 from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -12,17 +13,17 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import {
   mainListItems,
   secondaryListItems,
-} from "../components/dashboard/listItem";
+} from "../../components/dashboard/listItems";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 function Copyright() {
   return (
@@ -36,7 +37,9 @@ function Copyright() {
     </Typography>
   );
 }
+
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -76,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    //  position: "relative",
+    position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -105,61 +108,39 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  footer: {
-    position: "fixed",
-    bottom: 0,
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   fixedHeight: {
     height: 240,
   },
+  footer: {
+    position: "fixed",
+    bottom: "0px",
+  },
 }));
 
-const DashboardLayout = ({ children }) => {
+const Dashboard = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open2 = Boolean(anchorEl);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  //
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-
-  const handleProfileMenuOpen = (event) => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
+  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const handleClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -187,32 +168,51 @@ const DashboardLayout = ({ children }) => {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Hello, Isaac
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-
-          {/* User Icons */}
-          <IconButton
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
+          {/* PRofile */}
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle style={{ fontSize: 30 }} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={open2}
+              onClose={handleClose}
+            >
+              <Link2 href="/dashboard/updateProfile">
+                <a>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                </a>
+              </Link2>
+              <MenuItem onClick={handleClose}>LogOut</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
-      {renderMenu}
-      {/* DRAWER */}
       <Drawer
-        elevation={4}
-        variant="persistent"
+        variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
@@ -230,9 +230,9 @@ const DashboardLayout = ({ children }) => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
+        <Container maxWidth="lg" className={classes.container}>
           {children}
-          <Box pt={15} className={classes.footer}>
+          <Box pt={4} className={classes.footer}>
             <Copyright />
           </Box>
         </Container>
@@ -240,4 +240,5 @@ const DashboardLayout = ({ children }) => {
     </div>
   );
 };
-export default DashboardLayout;
+
+export default Dashboard;
