@@ -119,7 +119,7 @@ const Navbar = () => {
 
           <Typography variant="h6" className={classes.title}>
             <Link href="/">
-              <a> Car Expert</a>
+              <a>Next-Dash</a>
             </Link>
           </Typography>
 

@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import Default from "../layouts/default";
-import Dashboard from "../layouts/dashboard";
+import Default from "../layouts/default/default";
+import Dashboard from "../layouts/dashboard/dashboard";
 
 const layouts = {
   defaultLayout: Default,

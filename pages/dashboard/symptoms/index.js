@@ -70,7 +70,7 @@ const Symptoms = () => {
           <Card className={classes.card}>
             <Box py={5}>
               <Typography variant="h4" color="primary" align="left">
-                Add Symptoms
+                Add Product
               </Typography>
             </Box>
             <Formik

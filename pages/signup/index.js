@@ -14,7 +14,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import { Person, Email } from "@material-ui/icons";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
-
+import Text from '../../components/default/text/text'
 // regex
 const usernameRegex = /^[A-Za-z]+$/;
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -211,6 +211,7 @@ const SignUp = () => {
                   />
 
                   <Button label="Sign Up" type="submit" />
+                  <Text label="Already have an account?" href="/signin"/>
                 </form>
               )}
             </Formik>

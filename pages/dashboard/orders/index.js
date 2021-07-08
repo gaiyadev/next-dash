@@ -44,7 +44,7 @@ const FetchSymptoms = () => {
     },
   ]);
   const [columns, setColumns] = useState([
-    { title: "UserName", field: "username" },
+    { title: "Username", field: "username" },
     { title: "EMail", field: "email" },
     { title: "RegOn", field: "birthYear", type: "numeric" },
   ]);
@@ -56,7 +56,7 @@ const FetchSymptoms = () => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-        <title>All symptoms</title>
+        <title>All Orders</title>
       </Head>
       <Grid container>
         <Grid item sm={12} md={1} xs={12}></Grid>
@@ -118,7 +118,7 @@ const FetchSymptoms = () => {
               //         alert("You saved " + rowData.name),
               //     },
               //   ]}
-              title="All Symptoms"
+              title="All Orders"
             />
           </Box>
         </Grid>

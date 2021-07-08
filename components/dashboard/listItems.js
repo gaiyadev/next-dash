@@ -39,7 +39,7 @@ export const mainListItems = (
       </ListItemIcon>
       <Link href="/dashboard/symptoms">
         <a>
-          <ListItemText primary="Add Symptoms" />
+          <ListItemText primary="Add product" />
         </a>
       </Link>
     </ListItem>
@@ -52,9 +52,9 @@ export const mainListItems = (
           }}
         />
       </ListItemIcon>
-      <Link href="/dashboard/allSymptoms">
+      <Link href="/dashboard/orders">
         <a>
-          <ListItemText primary="View Symptoms" />
+          <ListItemText primary="Orders" />
         </a>
       </Link>
     </ListItem>

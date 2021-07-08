@@ -20,7 +20,6 @@ import Text from "../../components/default/text/text";
 
 // regex
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const passwordRegex = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,21 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = () => {
+const ForgotPassword = () => {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    showComfirmPassword: false,
-    showPassword: false,
-  });
-  const [checked, setChecked] = React.useState(false);
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
   return (
     <div className={classes.root}>
       <Head>
@@ -65,26 +51,18 @@ const SignIn = () => {
           <Card className={classes.card}>
             <Box py={5}>
               <Typography variant="h4" color="primary" align="left">
-                Sign In
+                Forgot Password
               </Typography>
             </Box>
             <Formik
               initialValues={{
                 email: "",
-                password: "",
               }}
               validationSchema={Yup.object({
                 email: Yup.string()
                   .email("Email is invalid")
                   .matches(emailRegex, "Email is invalid ")
                   .required("Email is required"),
-                password: Yup.string()
-                  .min(6, "Password must be atleast 6 characters")
-                  .matches(
-                    passwordRegex,
-                    "Password should contain atleast one number and one uppercase"
-                  )
-                  .required("Password is required"),
               })}
               onSubmit={(values, actions) => {
                 console.log(values);
@@ -113,51 +91,8 @@ const SignIn = () => {
                     }}
                   />
 
-                  {/* Password */}
-                  <Input
-                    type={values.showPassword ? "text" : "password"}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.password}
-                    label="Password"
-                    name="password"
-                    error={props.errors.password ? true : false}
-                    errortext={props.errors.password}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="start">
-                          <IconButton
-                            onClick={handleClickShowPassword}
-                            edge="end"
-                          >
-                            {values.showPassword ? (
-                              <Visibility color="primary" />
-                            ) : (
-                              <VisibilityOff color="primary" />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onClick={() => {
-                          setChecked(!checked);
-                          console.log(checked);
-                        }}
-                        color="primary"
-                        inputProps={{ "aria-label": "secondary checkbox" }}
-                      />
-                    }
-                    label="Remember me"
-                  />
-
-                  <Button label="Sign In" type="submit" />
-                  <Text label="Dont't have an account?" href="/signup" />
-                  <Text label="Forgot Password?" href="/forgotPassword" />
+                  <Button label="Sent Reset Link" type="submit" />
+                  <Text label="Remember password?" href="/signin" />
                 </form>
               )}
             </Formik>
@@ -169,5 +104,5 @@ const SignIn = () => {
   );
 };
 
-SignIn.layout = "defaultLayout";
-export default SignIn;
+ForgotPassword.layout = "defaultLayout";
+export default ForgotPassword;
